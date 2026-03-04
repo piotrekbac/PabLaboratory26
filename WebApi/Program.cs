@@ -11,7 +11,9 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddAuthorization();
-        builder.Services.AddSingleton<ICustomerService, MemoryCustomerService>();
+        builder.Services.AddSingleton<ICustomerService, MemoryCustomerService1>();
+        
+        // podczas labolatorium2 powiedziano, że można usunąć ten interfejs, ale ja go zostawiam podglądowo. 
         
         // rejestrujemy w naszej aplikacji builder.Services -- linijka powyżej
         // w ten sposób kontener nam utworzy instancje, żebyśmy my nie musieli tego robić

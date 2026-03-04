@@ -1,15 +1,13 @@
-using AppCore.ValueObjects;
+using AppCore.Models.Enums;
 
 namespace AppCore.Models;
 
-public class Address
+public class Address : EntityBase
 {
-    // Ponieważ może być dwóch klientów zamawiających z tego samego adresu dodajemy tożsamość
-    public int Id { get; set; }
-    public required string Street { get; set; }
-    public required string City { get; set; }
-    public required string ZipCode { get; set; }
-    public required Country Country { get; set; }
-    
-    // Dodajemy required, aby każde z tych pól było wymagane
+    public string Street { get; set; }
+    public string City { get; set; }
+    public string PostalCode { get; set; }
+    public string Country { get; set; }
+    public AddressType Type { get; set; }
 }
+

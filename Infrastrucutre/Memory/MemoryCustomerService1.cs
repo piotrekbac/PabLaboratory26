@@ -3,12 +3,12 @@ using AppCore.Models;
 
 namespace Infrastrucutre.Memory;
 
-public class MemoryCustomerService : ICustomerService
+public class MemoryCustomerService1 : ICustomerService
 {
-    public IEnumerable<Customer> GetCustomers()
+    public IEnumerable<Customer1> GetCustomers()
     {
         return [
-            new Customer()
+            new Customer1()
             {
                 Id = 1,
                 FirstName = "Jan",
@@ -17,7 +17,7 @@ public class MemoryCustomerService : ICustomerService
                 Phone = "111-222-333",
                 AddressId = 11
             },
-            new Customer
+            new Customer1
             {
                 Id = 2,
                 FirstName = "Anna",
@@ -29,7 +29,9 @@ public class MemoryCustomerService : ICustomerService
         ];
     }
 
-    public Task<IEnumerable<Customer>> GetCustomersAsync()
+    // podczas labolatorium2 powiedziano, że można usunąć ten interfejs, ale ja go zostawiam podglądowo. 
+    
+    public Task<IEnumerable<Customer1>> GetCustomersAsync()
     {
         throw new NotImplementedException();
     }

@@ -1,6 +1,6 @@
 namespace AppCore.Models;
 
-public class Customer
+public class Customer1
 {
     // prop (i podpowiada dalej)
     public int Id { get; set; }
@@ -14,3 +14,5 @@ public class Customer
     // Będziemy mogli się wspomóc biblioteką Identity (.NET)
     // public string Password { get; set; }
 }
+
+// podczas labolatorium2 powiedziano, że można usunąć ten interfejs, ale ja go zostawiam podglądowo. 
