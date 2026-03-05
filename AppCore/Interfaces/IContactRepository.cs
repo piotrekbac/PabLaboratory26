@@ -1,16 +1,29 @@
 using AppCore.DTOs;
 using AppCore.Models;
 
-namespace AppCore.Interfaces;
-
-public interface IContactRepository : IGenericRepositoryAsync<Contact>
+namespace AppCore.Interfaces
 {
-    Task<PagedResult<Contact>> SearchAsync(ContactSearchDto searchDto);
-    Task<IEnumerable<Contact>> FindByTagAsync(string tag);
-    
-    Task AddNoteAsync(Guid contactId, Note note);
-    Task<IEnumerable<Note>> GetNotesAsync(Guid contactId);
+    // Repozytorium dla encji Contact. Dziedziczy po generycznym repozytorium, więc ma już:
+    // FindByIdAsync, FindAllAsync, FindPagedAsync, AddAsync, UpdateAsync, RemoveByIdAsync.
+    public interface IContactRepository : IGenericRepositoryAsync<Contact>
+    {
+        // Wyszukiwanie kontaktów na podstawie kryteriów z DTO.
+        // Zwraca wyniki w formie stronicowanej.
+        Task<PagedResult<Contact>> SearchAsync(ContactSearchDto searchDto);
 
-    Task AddTagAsync(Guid contactId, Tag tag);
-    Task RemoveTagAsync(Guid contactId, Guid tagId);
+        // Zwraca wszystkie kontakty, które mają przypisany tag o podanej nazwie.
+        Task<IEnumerable<Contact>> FindByTagAsync(string tag);
+
+        // Dodaje notatkę do kontaktu o podanym ID.
+        Task AddNoteAsync(Guid contactId, Note note);
+
+        // Pobiera wszystkie notatki przypisane do kontaktu.
+        Task<IEnumerable<Note>> GetNotesAsync(Guid contactId);
+
+        // Dodaje tag do kontaktu.
+        Task AddTagAsync(Guid contactId, Tag tag);
+
+        // Usuwa tag z kontaktu na podstawie jego ID.
+        Task RemoveTagAsync(Guid contactId, Guid tagId);
+    }
 }

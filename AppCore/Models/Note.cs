@@ -1,9 +1,18 @@
-namespace AppCore.Models;
-
-public class Note : EntityBase
+namespace AppCore.Models
 {
-    public Guid id { get; set; }
-    public string Content { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public string CreatedBy { get; set; }
+    // Klasa Note dziedziczy po EntityBase, czyli ma wspólne pola encji (np. Id)
+    public class Note : EntityBase
+    {
+        // Dodatkowy identyfikator notatki — uwaga: dubluje Id z EntityBase
+        public Guid id { get; set; }
+
+        // Treść notatki — wymagane pole (string bez '?')
+        public string Content { get; set; }
+
+        // Data utworzenia notatki
+        public DateTime CreatedAt { get; set; }
+
+        // Informacja o autorze notatki — np. nazwa użytkownika
+        public string CreatedBy { get; set; }
+    }
 }
