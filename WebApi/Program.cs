@@ -1,5 +1,7 @@
 using AppCore.Interfaces;
+using AppCore.Services;
 using Infrastrucutre.Memory;
+using Interfaces.Memory; 
 
 namespace WebApi;
 
@@ -10,35 +12,62 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        builder.Services.AddControllers();  // <-- TO JEST KLUCZOWE!
         builder.Services.AddAuthorization();
-        builder.Services.AddSingleton<ICustomerService, MemoryCustomerService1>();
-        
-        // podczas labolatorium2 powiedziano, że można usunąć ten interfejs, ale ja go zostawiam podglądowo. 
-        
-        // rejestrujemy w naszej aplikacji builder.Services -- linijka powyżej
-        // w ten sposób kontener nam utworzy instancje, żebyśmy my nie musieli tego robić
 
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+        // --- Rejestracja serwisów w kontenerze Dependency Injection (DI) ---
+        // Kontener zarządza cyklem życia obiektów. Singleton oznacza jedną instancję dla całej aplikacji.
+        
+        builder.Services.AddAuthorization();        // dodaje
+
+        builder.Services.AddOpenApi();
+            
+        // Stare repozytorium (z lab 2)
+        builder.Services.AddSingleton<ICustomerService, MemoryCustomerService1>();
+
+        // 1. Rejestracja konkretnego repozytorium dla osób (Person)
+        // Kiedy serwis poprosi o IPersonRepository, dostanie MemoryPersonRepository.
+        builder.Services.AddSingleton<IPersonRepository, MemoryPersonRepository>();
+        
+        // 2. Rejestracja UnitOfWork
+        // UnitOfWork grupuje repozytoria. Używamy fabryki (sp => ...), aby wstrzyknąć 
+        // wcześniej zarejestrowane repozytoria do jego konstruktora.
+        builder.Services.AddSingleton<IContactUnitOfWork>(sp =>
+        {
+            var persons = sp.GetRequiredService<IPersonRepository>();
+            // Na razie przekazujemy null dla pozostałych repozytoriów, aż je zaimplementujesz.
+            return new MemoryContactUnitOfWork(persons, null!, null!); 
+        });
+
+        // 3. Rejestracja głównego serwisu biznesowego
+        // Serwis wymaga UnitOfWork, który został zarejestrowany powyżej.
+        builder.Services.AddSingleton<IPersonService, MemoryPersonService>();
+        
         builder.Services.AddOpenApi();
         
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+        // --- Konfiguracja potoku przetwarzania żądań HTTP ---
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
         }
 
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
         
-        // Teraz jeszcze wstrzykujemy (dodajemy ICustomerService service)
-        app.MapGet("/api/customers", (ICustomerService service, HttpContext httpContext) =>
+        // --- Endpoints ---
+        
+        // Endpoint dla starych klientów
+        app.MapGet("/api/customers", (ICustomerService service) =>
             {
                 return service.GetCustomers();
             })
             .WithName("GetCustomers");
+
+        // --- Automatyczne mapowanie kontrolerów ---
+        // Dzięki temu kontroler ContactsController zostanie automatycznie wykryty przez API.
+        app.MapControllers(); 
 
         app.Run();
     }

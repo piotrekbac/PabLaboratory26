@@ -4,36 +4,47 @@ using Xunit;
 
 namespace UnitTests;
 
+// Testy wykonam w dobrze znanej metodyce AAA (Arange, Act, Assert)
+
 public class MemoryGenericRepositoryTest
 {
     private readonly MemoryGenericRepository<Person> _repo = new();
 
+    // Test odpowiedzialny za dodawanie i pobieranie osoby 
     [Fact]
     public async Task AddAndFindPersonTestAsync()
     {
+        // Arrange - aranżacja testu
         var person = new Person { FirstName = "Adam", LastName = "Kowalski" };
         
+        // Act - wykonanie testu
         await _repo.AddAsync(person);
         var actual = await _repo.FindByIdAsync(person.Id);
         
+        // Assert - asercja
         Assert.NotNull(actual);
         Assert.Equal(person.Id, actual?.Id);
         Assert.Equal("Adam", actual?.FirstName);
     }
 
+    // Test odpowiedzialny za aktualizację istniejącej osoby
     [Fact]
     public async Task UpdatePersonTestAsync()
     {
+        // Arrange
         var person = new Person { FirstName = "Adam" };
         await _repo.AddAsync(person);
         
+        // Act
         person.FirstName = "Ewa";
         await _repo.UpdateAsync(person);
         var actual = await _repo.FindByIdAsync(person.Id);
       
+        // Assert
         Assert.Equal("Ewa", actual?.FirstName);
     }
 
+    // Test odpowiedzialny za usuwanie istniejącej osoby
     [Fact]
     public async Task RemovePersonTestAsync()
     {
@@ -49,6 +60,7 @@ public class MemoryGenericRepositoryTest
         Assert.Null(actual);
     }
 
+     // Test odpowiedzialny za pobieranie wszystkich osób (findPaged)
     [Fact]
     public async Task FindPagedTestAsync()
     {
@@ -64,6 +76,6 @@ public class MemoryGenericRepositoryTest
         // Assert
         Assert.Equal(2, page1.Items.Count);
         Assert.Equal(5, page1.TotalCount);
-        Assert.Equal(3, page1.TotalPages); // 5 / 2 = 3 strony
+        Assert.Equal(3, page1.TotalPages); 
     }
 }

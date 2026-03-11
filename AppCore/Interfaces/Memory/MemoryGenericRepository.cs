@@ -5,10 +5,10 @@ using AppCore.Models;
 namespace Interfaces.Memory;
 
 public class MemoryGenericRepository<T> : IGenericRepositoryAsync<T> 
-    where T : EntityBase // Wymagamy, aby T miało Id (EntityBase)
+    where T : EntityBase
 {
-    // Dictionary symuluje tabelę w bazie danych. Kluczem jest Guid (Id), wartością obiekt.
-    private readonly Dictionary<Guid, T> _data = new();
+    // Zmieniono na protected, aby repozytoria konkretne miały dostęp do danych - WAŻNY KROK Z INSTRUKCJI
+    protected readonly Dictionary<Guid, T> _data = new();
 
     public Task<T?> FindByIdAsync(Guid id)
     {
