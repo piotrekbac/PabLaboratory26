@@ -1,3 +1,4 @@
+using AppCore.DTOs;
 using AppCore.Models.Enums;     
 
 namespace AppCore.Models 
@@ -38,5 +39,15 @@ namespace AppCore.Models
 
         // Nadpisanie metody z klasy bazowej Contact -> Zwraca nazwę firmy jako "wyświetlaną nazwę".
         public override string GetDisplayName() => Name;
+        
+        public CompanyDto ToDto() => new()
+        {
+            Id = this.Id,
+            Name = this.Name,
+            NIP = this.NIP,
+            Industry = this.Industry,
+            Website = this.Website
+        };
+        
     }
 }

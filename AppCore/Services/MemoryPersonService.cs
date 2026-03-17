@@ -8,42 +8,31 @@ public class MemoryPersonService(IContactUnitOfWork unitOfWork) : IPersonService
 {
     public async Task<PagedResult<PersonDto>> FindAllPeoplePaged(int page, int size)
     {
-        var pagedPersons = await unitOfWork.Persons.FindPagedAsync(page, size);
-        
-        // Mapowanie encji na DTO
-        var items = pagedPersons.Items.Select(p => p.ToDto()).ToList();
-        
-        return new PagedResult<PersonDto>(items, pagedPersons.TotalCount, pagedPersons.Page, pagedPersons.PageSize);
-    }
-
-    public async Task<IEnumerable<PersonDto>> FindPeopleFromCompany(Guid companyId)
-    {
-        var persons = await unitOfWork.Persons.GetEmployeesByCompanyAsync(companyId);
-        return persons.Select(p => p.ToDto());
+        var paged = await unitOfWork.Persons.FindPagedAsync(page, size);
+        return new PagedResult<PersonDto>(
+            paged.Items.Select(p => p.ToDto()).ToList(), 
+            paged.TotalCount, 
+            paged.Page, 
+            paged.PageSize
+        );
     }
 
     public async Task<PersonDto> CreatePerson(CreatePersonDto dto)
     {
         var person = dto.ToEntity();
-        var created = await unitOfWork.Persons.AddAsync(person);
+        await unitOfWork.Persons.AddAsync(person);
         await unitOfWork.SaveChangesAsync();
-        return created.ToDto();
-    }
-
-    public async Task<PersonDto?> GetById(Guid id)
-    {
-        var person = await unitOfWork.Persons.FindByIdAsync(id);
-        return person?.ToDto();
+        return person.ToDto();
     }
 
     public async Task UpdatePerson(Guid id, UpdatePersonDto dto)
     {
         var person = await unitOfWork.Persons.FindByIdAsync(id);
-        if (person == null) throw new KeyNotFoundException("Osoba nie istnieje");
-        
-        // Tu aktualizujemy właściwości (uproszczone)
-        person.FirstName = dto.FirstName ?? person.FirstName;
-        person.LastName = dto.LastName ?? person.LastName;
+        if (person == null) throw new KeyNotFoundException("Nie znaleziono osoby");
+
+        if (dto.FirstName != null) person.FirstName = dto.FirstName;
+        if (dto.LastName != null) person.LastName = dto.LastName;
+        if (dto.Email != null) person.Email = dto.Email;
         
         await unitOfWork.Persons.UpdateAsync(person);
         await unitOfWork.SaveChangesAsync();
@@ -54,4 +43,12 @@ public class MemoryPersonService(IContactUnitOfWork unitOfWork) : IPersonService
         await unitOfWork.Persons.RemoveByIdAsync(id);
         await unitOfWork.SaveChangesAsync();
     }
+
+    public async Task<PersonDto?> GetById(Guid id)
+    {
+        var person = await unitOfWork.Persons.FindByIdAsync(id);
+        return person?.ToDto();
+    }
+
+    public Task<IEnumerable<PersonDto>> FindPeopleFromCompany(Guid companyId) => throw new NotImplementedException();
 }

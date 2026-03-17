@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj": {}
+    "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
+    "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
+        "projectUniqueName": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
         "projectName": "AppCore",
-        "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
-        "packagesPath": "D:\\Users\\piotr.bacior\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\obj\\",
+        "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
+        "packagesPath": "C:\\Users\\Piotr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Udostepniane VisualStudio\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\Users\\piotr.bacior\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Piotr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,24 +65,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj": {
+    "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj",
+        "projectUniqueName": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj",
         "projectName": "Infrastrucutre",
-        "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj",
-        "packagesPath": "D:\\Users\\piotr.bacior\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\obj\\",
+        "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj",
+        "packagesPath": "C:\\Users\\Piotr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Udostepniane VisualStudio\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\Users\\piotr.bacior\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Piotr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -92,15 +91,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
-                "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj"
+              "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
+                "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj"
               }
             }
           }
@@ -136,24 +134,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj": {
+    "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj",
-        "packagesPath": "D:\\Users\\piotr.bacior\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\WebApi\\obj\\",
+        "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\Piotr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Udostepniane VisualStudio\\NuGetPackages"
         ],
         "configFilePaths": [
-          "D:\\Users\\piotr.bacior\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Piotr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -162,18 +160,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
-                "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj"
+              "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
+                "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj"
               },
-              "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj": {
-                "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj"
+              "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj": {
+                "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj"
               }
             }
           }
@@ -218,7 +215,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

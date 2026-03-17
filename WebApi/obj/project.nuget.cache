@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Ainucav1eDE=",
+  "dgSpecHash": "Dj2xUeLOBOk=",
   "success": true,
-  "projectFilePath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
-    "D:\\Users\\piotr.bacior\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
-    "D:\\Users\\piotr.bacior\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
+    "C:\\Users\\Piotr\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }
