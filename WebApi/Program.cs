@@ -1,4 +1,5 @@
 using AppCore.Interfaces;
+using AppCore.Module;
 using AppCore.Services;
 using Infrastrucutre.Memory;
 using Interfaces.Memory; 
@@ -28,6 +29,8 @@ public class Program
         // 1. Rejestracja konkretnego repozytorium dla osób (Person)
         // Kiedy serwis poprosi o IPersonRepository, dostanie MemoryPersonRepository.
         builder.Services.AddSingleton<IPersonRepository, MemoryPersonRepository>();
+        builder.Services.AddSingleton<ICompanyRepository, MemoryCompanyRepository>();
+        builder.Services.AddSingleton<IOrganizationRepository, MemoryOrganizationRepository>();
         
         // 2. Rejestracja UnitOfWork
         // UnitOfWork grupuje repozytoria. Używamy fabryki (sp => ...), aby wstrzyknąć 
@@ -35,13 +38,18 @@ public class Program
         builder.Services.AddSingleton<IContactUnitOfWork>(sp =>
         {
             var persons = sp.GetRequiredService<IPersonRepository>();
-            // Na razie przekazujemy null dla pozostałych repozytoriów, aż je zaimplementujesz.
-            return new MemoryContactUnitOfWork(persons, null!, null!); 
+            var companies = sp.GetRequiredService<ICompanyRepository>();
+            var orgs = sp.GetRequiredService<IOrganizationRepository>(); // To musi zadziałać
+            return new MemoryContactUnitOfWork(persons, companies, orgs);
         });
 
         // 3. Rejestracja głównego serwisu biznesowego
         // Serwis wymaga UnitOfWork, który został zarejestrowany powyżej.
         builder.Services.AddSingleton<IPersonService, MemoryPersonService>();
+        
+        // Rejestracja AddContactModule 
+        builder.Services.AddContactsModule(builder.Configuration);
+        
         
         builder.Services.AddOpenApi();
         
@@ -53,7 +61,7 @@ public class Program
             app.MapOpenApi();
         }
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
         app.UseAuthorization();
         
         // --- Endpoints ---

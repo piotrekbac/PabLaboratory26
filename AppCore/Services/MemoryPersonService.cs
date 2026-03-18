@@ -1,41 +1,51 @@
 using AppCore.DTOs;
 using AppCore.Interfaces;
 using AppCore.Models;
+using AutoMapper;
 
 namespace AppCore.Services;
 
-public class MemoryPersonService(IContactUnitOfWork unitOfWork) : IPersonService
+public class MemoryPersonService(IContactUnitOfWork unitOfWork, IMapper mapper) : IPersonService
 {
     public async Task<PagedResult<PersonDto>> FindAllPeoplePaged(int page, int size)
     {
-        var paged = await unitOfWork.Persons.FindPagedAsync(page, size);
-        return new PagedResult<PersonDto>(
-            paged.Items.Select(p => p.ToDto()).ToList(), 
-            paged.TotalCount, 
-            paged.Page, 
-            paged.PageSize
-        );
+        var result = await unitOfWork.Persons.FindPagedAsync(page, size);
+        var items = mapper.Map<List<PersonDto>>(result.Items);
+        return new PagedResult<PersonDto>(items, result.TotalCount, result.Page, result.PageSize);
     }
 
-    public async Task<PersonDto> CreatePerson(CreatePersonDto dto)
+    public async Task<IEnumerable<PersonDto>> FindPeopleFromCompany(Guid companyId)
     {
-        var person = dto.ToEntity();
-        await unitOfWork.Persons.AddAsync(person);
-        await unitOfWork.SaveChangesAsync();
-        return person.ToDto();
+        var persons = await unitOfWork.Persons.GetEmployeesByCompanyAsync(companyId);
+        return mapper.Map<IEnumerable<PersonDto>>(persons);
     }
 
-    public async Task UpdatePerson(Guid id, UpdatePersonDto dto)
+    public async Task<PersonDto> GetById(Guid id)
     {
         var person = await unitOfWork.Persons.FindByIdAsync(id);
-        if (person == null) throw new KeyNotFoundException("Nie znaleziono osoby");
+        if (person == null) throw new KeyNotFoundException("Osoba nie istnieje.");
+        return mapper.Map<PersonDto>(person);
+    }
 
-        if (dto.FirstName != null) person.FirstName = dto.FirstName;
-        if (dto.LastName != null) person.LastName = dto.LastName;
-        if (dto.Email != null) person.Email = dto.Email;
-        
-        await unitOfWork.Persons.UpdateAsync(person);
+    public async Task<PersonDto> CreatePerson(CreatePersonDto personDto)
+    {
+        var entity = mapper.Map<Person>(personDto);
+        await unitOfWork.Persons.AddAsync(entity);
         await unitOfWork.SaveChangesAsync();
+        return mapper.Map<PersonDto>(entity);
+    }
+
+    public async Task<PersonDto> UpdatePerson(Guid id, UpdatePersonDto personDto)
+    {
+        var entity = await unitOfWork.Persons.FindByIdAsync(id);
+        if (entity == null) throw new KeyNotFoundException("Osoba nie istnieje.");
+
+        // Mapujemy zmiany z DTO na istniejącą encję
+        mapper.Map(personDto, entity);
+        
+        await unitOfWork.Persons.UpdateAsync(entity);
+        await unitOfWork.SaveChangesAsync();
+        return mapper.Map<PersonDto>(entity);
     }
 
     public async Task DeletePerson(Guid id)
@@ -43,12 +53,4 @@ public class MemoryPersonService(IContactUnitOfWork unitOfWork) : IPersonService
         await unitOfWork.Persons.RemoveByIdAsync(id);
         await unitOfWork.SaveChangesAsync();
     }
-
-    public async Task<PersonDto?> GetById(Guid id)
-    {
-        var person = await unitOfWork.Persons.FindByIdAsync(id);
-        return person?.ToDto();
-    }
-
-    public Task<IEnumerable<PersonDto>> FindPeopleFromCompany(Guid companyId) => throw new NotImplementedException();
 }

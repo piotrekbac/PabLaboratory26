@@ -3,5 +3,28 @@
 GET http://localhost:5180/api/contacts
 Accept: application/json
 
+### Dodaj nową osobę (POST)
+POST http://localhost:5180/api/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Adam",
+  "lastName" : "Nowak",
+  "email": "adam@wsei.edu.pl",
+  "phone": "48 123 456 789",
+  "gender": 0
+}
+
+### Edytuj osobę (podmień ID na takie z odpowiedzi powyżej)
+PUT http://localhost:5180/api/contacts/WSTAW_GUID_TUTAJ
+Content-Type: application/json
+
+{
+  "firstName": "Adam",
+  "lastName" : "Kowalski"
+}
+
+### Usuń osobę
+DELETE http://localhost:5180/api/contacts/WSTAW_GUID_TUTAJ
 
 ###

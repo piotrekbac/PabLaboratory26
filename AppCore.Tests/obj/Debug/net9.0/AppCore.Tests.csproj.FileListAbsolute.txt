@@ -12,6 +12,11 @@ D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9
 D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\AppCore.Tests.runtimeconfig.json
 D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\AppCore.Tests.dll
 D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\AppCore.Tests.pdb
+D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\AutoMapper.dll
+D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\FluentValidation.dll
+D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\Microsoft.TestPlatform.CoreUtilities.dll
 D:\Users\piotr.bacior\RiderProjects\PabLaboratory26\AppCore.Tests\bin\Debug\net9.0\Microsoft.TestPlatform.PlatformAbstractions.dll
