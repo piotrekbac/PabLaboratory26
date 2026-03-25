@@ -1,4 +1,4 @@
-using AppCore.Models;           // Wymagane dla metody ToEntity()
+using AppCore.Models;           // Wymagane dla ToEntity()
 using AppCore.Models.Enums;
 
 // Piotr Bacior - WSEI Kraków
@@ -8,16 +8,16 @@ namespace AppCore.DTOs;
 // DTO reprezentujący osobę zwracaną na zewnątrz.
 public record PersonDto : ContactBaseDto
 {
-    public string FirstName { get; init; } = string.Empty;
-    public string LastName { get; init; } = string.Empty;
-    public string? Position { get; init; }
-    public DateTime? BirthDate { get; init; }
-    public Gender Gender { get; init; }
-    public Guid? EmployerId { get; init; }
-    public List<NoteDto> Notes { get; init; } = new(); 
+    public string FirstName { get; init; } = string.Empty; // Imię
+    public string LastName { get; init; } = string.Empty;  // Nazwisko
+    public string? Position { get; init; }                 // Stanowisko
+    public DateTime? BirthDate { get; init; }              // Data urodzenia
+    public Gender Gender { get; init; }                    // Płeć
+    public Guid? EmployerId { get; init; }                 // Firma zatrudniająca
+    public List<NoteDto> Notes { get; init; } = new();     // Lista notatek
 }
 
-// DTO używane przy tworzeniu nowej osoby.
+// DTO używane przy tworzeniu osoby.
 public record CreatePersonDto(
     string FirstName,
     string LastName,
@@ -30,6 +30,7 @@ public record CreatePersonDto(
     AddressDto? Address
 )
 {
+    // Konwersja DTO → encja Person
     public Person ToEntity() => new()
     {
         Id = Guid.NewGuid(),

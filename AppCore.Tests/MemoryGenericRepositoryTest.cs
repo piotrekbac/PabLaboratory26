@@ -6,24 +6,24 @@ using Xunit;
 
 namespace UnitTests;
 
-// Testy wykonam w dobrze znanej metodyce AAA (Arange, Act, Assert)
-
+// Testy wykonane w metodyce AAA (Arrange, Act, Assert)
 public class MemoryGenericRepositoryTest
 {
+    // Tworzymy repozytorium w pamięci dla encji Person
     private readonly MemoryGenericRepository<Person> _repo = new();
 
     // Test odpowiedzialny za dodawanie i pobieranie osoby 
     [Fact]
     public async Task AddAndFindPersonTestAsync()
     {
-        // Arrange - aranżacja testu
+        // Arrange — przygotowanie danych
         var person = new Person { FirstName = "Adam", LastName = "Kowalski" };
         
-        // Act - wykonanie testu
+        // Act — wykonanie operacji
         await _repo.AddAsync(person);
         var actual = await _repo.FindByIdAsync(person.Id);
         
-        // Assert - asercja
+        // Assert — weryfikacja wyniku
         Assert.NotNull(actual);
         Assert.Equal(person.Id, actual?.Id);
         Assert.Equal("Adam", actual?.FirstName);
@@ -37,7 +37,7 @@ public class MemoryGenericRepositoryTest
         var person = new Person { FirstName = "Adam" };
         await _repo.AddAsync(person);
         
-        // Act
+        // Act — zmieniamy imię i aktualizujemy encję
         person.FirstName = "Ewa";
         await _repo.UpdateAsync(person);
         var actual = await _repo.FindByIdAsync(person.Id);
@@ -54,30 +54,30 @@ public class MemoryGenericRepositoryTest
         var person = new Person();
         await _repo.AddAsync(person);
 
-        // Act
+        // Act — usuwamy osobę
         await _repo.RemoveByIdAsync(person.Id);
         var actual = await _repo.FindByIdAsync(person.Id);
 
-        // Assert
+        // Assert — osoba powinna być null
         Assert.Null(actual);
     }
 
-     // Test odpowiedzialny za pobieranie wszystkich osób (findPaged)
+    // Test odpowiedzialny za pobieranie osób stronicowanych
     [Fact]
     public async Task FindPagedTestAsync()
     {
-        // Arrange
+        // Arrange — dodajemy 5 osób
         for (int i = 0; i < 5; i++)
         {
             await _repo.AddAsync(new Person { FirstName = $"Osoba {i}" });
         }
 
-        // Act
-        var page1 = await _repo.FindPagedAsync(1, 2); // Pobieramy 2 osoby z 5
+        // Act — pobieramy pierwszą stronę po 2 elementy
+        var page1 = await _repo.FindPagedAsync(1, 2);
 
         // Assert
-        Assert.Equal(2, page1.Items.Count);
-        Assert.Equal(5, page1.TotalCount);
-        Assert.Equal(3, page1.TotalPages); 
+        Assert.Equal(2, page1.Items.Count); // 2 osoby na stronie
+        Assert.Equal(5, page1.TotalCount);  // łącznie 5 osób
+        Assert.Equal(3, page1.TotalPages);  // 3 strony (2 + 2 + 1)
     }
 }

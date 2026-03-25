@@ -14,77 +14,61 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-        builder.Services.AddControllers();  // <-- TO JEST KLUCZOWE!
+        // Rejestracja kontrolerów — kluczowe dla działania API
+        builder.Services.AddControllers();
         builder.Services.AddAuthorization();
 
-        // --- Rejestracja serwisów w kontenerze Dependency Injection (DI) ---
-        // Kontener zarządza cyklem życia obiektów. Singleton oznacza jedną instancję dla całej aplikacji.
-        
-        builder.Services.AddAuthorization();        // dodaje
-
+        // Rejestracja OpenAPI (Swagger)
         builder.Services.AddOpenApi();
-            
-        // Stare repozytorium (z lab 2)
+
+        // Stare repozytorium z lab 2 — pozostawione poglądowo
         builder.Services.AddSingleton<ICustomerService, MemoryCustomerService1>();
 
-        // 1. Rejestracja konkretnego repozytorium dla osób (Person)
-        // Kiedy serwis poprosi o IPersonRepository, dostanie MemoryPersonRepository.
+        // Rejestracja repozytoriów pamięciowych
         builder.Services.AddSingleton<IPersonRepository, MemoryPersonRepository>();
         builder.Services.AddSingleton<ICompanyRepository, MemoryCompanyRepository>();
         builder.Services.AddSingleton<IOrganizationRepository, MemoryOrganizationRepository>();
+
+        // Rejestracja globalnego handlera wyjątków
         builder.Services.AddExceptionHandler<WebApi.Middleware.ProblemDetailsExceptionHandler>();
         builder.Services.AddProblemDetails();
         
-        // 2. Rejestracja UnitOfWork
-        // UnitOfWork grupuje repozytoria. Używamy fabryki (sp => ...), aby wstrzyknąć 
-        // wcześniej zarejestrowane repozytoria do jego konstruktora.
+        // Rejestracja UnitOfWork — łączy repozytoria w jedną transakcję
         builder.Services.AddSingleton<IContactUnitOfWork>(sp =>
         {
             var persons = sp.GetRequiredService<IPersonRepository>();
             var companies = sp.GetRequiredService<ICompanyRepository>();
-            var orgs = sp.GetRequiredService<IOrganizationRepository>(); // To musi zadziałać
+            var orgs = sp.GetRequiredService<IOrganizationRepository>();
             return new MemoryContactUnitOfWork(persons, companies, orgs);
         });
 
-        // 3. Rejestracja głównego serwisu biznesowego
-        // Serwis wymaga UnitOfWork, który został zarejestrowany powyżej.
+        // Rejestracja głównego serwisu biznesowego
         builder.Services.AddSingleton<IPersonService, MemoryPersonService>();
         
-        // Rejestracja AddContactModule 
+        // Rejestracja modułu kontaktów (AutoMapper + walidatory)
         builder.Services.AddContactsModule(builder.Configuration);
-        
-        
-        builder.Services.AddOpenApi();
         
         var app = builder.Build();
 
-        // --- Konfiguracja potoku przetwarzania żądań HTTP ---
+        // Swagger tylko w trybie developerskim
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
         }
 
-        //app.UseHttpsRedirection();
         app.UseAuthorization();
-        
-        // --- Endpoints ---
-        
-        // Endpoint dla starych klientów
+
+        // Endpoint z lab 2 — pozostawiony poglądowo
         app.MapGet("/api/customers", (ICustomerService service) =>
-            {
-                return service.GetCustomers();
-            })
-            .WithName("GetCustomers");
+            service.GetCustomers()
+        ).WithName("GetCustomers");
 
-        // --- Automatyczne mapowanie kontrolerów ---
-        // Dzięki temu kontroler ContactsController zostanie automatycznie wykryty przez API.
-        app.MapControllers(); 
-
-        
-        app.UseExceptionHandler();
+        // Automatyczne mapowanie kontrolerów
         app.MapControllers();
-        
+
+        // Globalny handler wyjątków
+        app.UseExceptionHandler();
+
         app.Run();
     }
 }

@@ -1,28 +1,25 @@
-using System.Collections.Generic; // Kluczowe — bez tego List<T> nie byłby widoczny
+using System.Collections.Generic; // Wymagane dla List<T>
 
 // Piotr Bacior - WSEI Kraków
 
 namespace AppCore.DTOs
 {
-    // Rekord generyczny reprezentujący wynik stronicowany (paged result).
+    // Generyczny rekord reprezentujący wynik stronicowany.
     // Używany np. przy zwracaniu list kontaktów, firm, osób itp.
     public record PagedResult<T>(
-        List<T> Items,   // Lista elementów na danej stronie
-        int TotalCount,  // Łączna liczba wszystkich elementów (bez paginacji)
-        int Page,        // Numer bieżącej strony (1-based)
+        List<T> Items,   // Elementy na bieżącej stronie
+        int TotalCount,  // Łączna liczba elementów
+        int Page,        // Numer strony
         int PageSize     // Liczba elementów na stronie
     )
     {
-        // Liczba wszystkich stron — zaokrąglona w górę.
-        // Przykład: TotalCount = 23, PageSize = 10 → TotalPages = 3
+        // Łączna liczba stron (zaokrąglona w górę)
         public int TotalPages => (int)Math.Ceiling((double)TotalCount / PageSize);
 
         // Czy istnieje następna strona?
-        // True, jeśli bieżąca strona jest mniejsza niż liczba stron.
         public bool HasNext => Page < TotalPages;
 
-        // Czy istnieje poprzednia strona?
-        // True, jeśli bieżąca strona jest większa niż 1.
+        // Czy istnieje poprzednia strona? 
         public bool HasPrevious => Page > 1;
     }
 }

@@ -6,6 +6,7 @@ using Interfaces.Memory;
 
 namespace Infrastrucutre.Memory;
 
+// Pusta implementacja — pozostawiona poglądowo
 public class MemoryCompanyRepository : MemoryGenericRepository<Company>, ICompanyRepository
 {
     public Task<IEnumerable<Company>> FindByNameAsync(string nameQuery) => throw new NotImplementedException();

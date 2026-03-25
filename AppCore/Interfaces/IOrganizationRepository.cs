@@ -6,19 +6,16 @@ using AppCore.Models.Enums;
 namespace AppCore.Interfaces
 {
     // Repozytorium dla encji Organization.
-    // Dziedziczy po generycznym repozytorium asynchronicznym więc ma już podstawowe operacje CRUD (Add, Update, Delete, GetById, List itd.).
     public interface IOrganizationRepository : IGenericRepositoryAsync<Organization>
     {
-        // Zwraca wszystkie organizacje o określonym typie (np. NGO, Foundation, Association).
+        // Zwraca organizacje o określonym typie (np. NGO, Foundation).
         public async Task<IEnumerable<Organization>> GetByTypeAsync(OrganizationType type)
         {
             var all = await FindAllAsync();
             return all.Where(o => o.Type == type);
         }
-        
 
-        // Zwraca listę członków organizacji o podanym identyfikatorze.
-        // organizationId to Guid identyfikujący encję Organization.
+        // Dodaje notatkę do organizacji (działa podobnie jak w Contact).
         public async Task AddNoteAsync(Guid contactId, Note note)
         {
             var contact = await FindByIdAsync(contactId);
@@ -27,9 +24,5 @@ namespace AppCore.Interfaces
                 contact.Notes.Add(note);
             }
         }
-        
-        
     }
-    
-    
 }

@@ -4,31 +4,20 @@ using AppCore.Models.Enums;     // Import enumów, m.in. OrganizationType
 
 namespace AppCore.Models
 {
-    // Organization dziedziczy po Contact, więc ma Email, Phone, Address, Status, Tags, Notes itd.
+    // Encja Organization dziedziczy po Contact.
     public class Organization : Contact
     {
-        // Nazwa organizacji — wymagane pole (string bez '?')
-        public string Name { get; set; }
+        public string Name { get; set; }                 // nazwa organizacji
+        public OrganizationType Type { get; set; }       // typ organizacji
+        public string? KRS { get; set; }                 // opcjonalny KRS
+        public string? Website { get; set; }             // strona www
+        public string? Mission { get; set; }             // misja organizacji
 
-        // Typ organizacji — enum (np. NGO, Foundation, Association)
-        public OrganizationType Type { get; set; }
-
-        // Numer KRS — opcjonalny
-        public string? KRS { get; set; }
-
-        // Strona internetowa — opcjonalna
-        public string? Website { get; set; }
-
-        // Misja organizacji — opcjonalna
-        public string? Mission { get; set; }
-
-        // Lista członków organizacji — brak inicjalizacji → może być null
+        // Lista członków — brak inicjalizacji → może być null
         public List<Person> Members { get; set; }
 
-        // Główna osoba kontaktowa — opcjonalna
-        public Person? PrimaryContact { get; set; }
-        
-        // Nadpisanie metody z Contact — zwraca nazwę organizacji
-        public override string GetDisplayName() => Name;
+        public Person? PrimaryContact { get; set; }      // główny kontakt
+
+        public override string GetDisplayName() => Name; // nazwa wyświetlana
     }
 }

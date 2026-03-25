@@ -6,6 +6,8 @@ using FluentValidation;
 
 namespace AppCore.Validators;
 
+// Walidator DTO tworzenia osoby.
+// Sprawdza poprawność imienia, nazwiska, emaila, telefonu itd.
 public class CreatePersonDtoValidator : AbstractValidator<CreatePersonDto>
 {
     private readonly ICompanyRepository _companyRepository;
@@ -25,10 +27,13 @@ public class CreatePersonDtoValidator : AbstractValidator<CreatePersonDto>
             .Matches(@"^[\p{L}\s\-]+$").WithMessage("Nazwisko zawiera niedozwolone znaki.");
 
         RuleFor(x => x.Email)
-            .NotEmpty().EmailAddress().MaximumLength(200);
+            .NotEmpty()
+            .EmailAddress()
+            .MaximumLength(200);
 
         RuleFor(x => x.Phone)
-            .Matches(@"^[0-9+\-\s]+$").WithMessage("Nieprawidłowy format numeru telefonu.")
+            .Matches(@"^[0-9+\-\s]+$")
+            .WithMessage("Nieprawidłowy format numeru telefonu.")
             .When(x => !string.IsNullOrEmpty(x.Phone));
 
         RuleFor(x => x.BirthDate)
@@ -36,20 +41,13 @@ public class CreatePersonDtoValidator : AbstractValidator<CreatePersonDto>
             .GreaterThan(DateTime.Today.AddYears(-120)).WithMessage("Nieprawidłowa data urodzenia.")
             .When(x => x.BirthDate.HasValue);
 
-        RuleFor(x => x.Gender).IsInEnum().WithMessage("Nieprawidlowa wartość płci.");
+        RuleFor(x => x.Gender)
+            .IsInEnum()
+            .WithMessage("Nieprawidlowa wartość płci.");
 
-        // RuleFor(x => x.EmployerId)
-        //     .MustAsync(async (id, ct) => await _companyRepository.FindByIdAsync(id!.Value) != null)
-        //     .WithMessage("Wskazana firma nie istnieje.")
-        //     .When(x => x.EmployerId.HasValue);
-        
+        // Walidacja adresu — jeśli istnieje, walidujemy go osobnym walidatorem.
         RuleFor(x => x.Address)
             .SetValidator(new AddressDtoValidator()!)
             .When(x => x.Address is not null);
-        
-        // private async Task<bool> EmployerExistsAsync(
-        //     Guid? employerId,
-        //     CancellationToken ct) =>
-        //     await _companyRepository.FindByIdAsync(employerId ?? Guid.Empty) is not null;
     }
 }

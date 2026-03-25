@@ -6,27 +6,27 @@ using AppCore.DTOs;
 
 namespace AppCore.Mapper;
 
+// Profil mapowania AutoMapper — definiuje konwersje między encjami a DTO.
 public class ContactsMappingProfile : Profile
 {
     public ContactsMappingProfile()
     {
-        // Definicja mapowania: z encji Person na PersonDto
+        // Mapowanie encji Person -> PersonDto
+        // Przykładowe użycie ForMember — pokazuje składnię, choć AutoMapper zrobiłby to automatycznie.
         CreateMap<Person, PersonDto>()
-            .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName)) // Automatyczne, ale pokazuję składnię
+            .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
             .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
-        
-        // Mapowanie w drugą stronę: z DTO na encję (używane przy POST/PUT)
+
+        // Mapowanie DTO -> encja (używane przy tworzeniu i aktualizacji osoby)
         CreateMap<CreatePersonDto, Person>();
         CreateMap<UpdatePersonDto, Person>();
-        
-        // Mapowanie adresu
+
+        // Mapowanie adresu w obie strony (Address ↔ AddressDto)
         CreateMap<Address, AddressDto>().ReverseMap();
-        
-        // Tworzenie i mapowanie notatki
-        CreateMap<Person, PersonDto>();
+
+        // Mapowanie notatek
         CreateMap<Note, NoteDto>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id)) // Wymuś mapowanie ID
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id)) // jawne mapowanie ID
             .ReverseMap();
-        
     }
 }

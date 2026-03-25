@@ -5,29 +5,28 @@ using AppCore.Models.Enums; // Import enumów (ContactStatus, AddressType)
 namespace AppCore.DTOs
 {
     // Bazowy DTO dla wszystkich typów kontaktów (Person, Company, Organization).
-    // Zawiera wspólne pola, które każdy kontakt powinien mieć.
+    // Zawiera wspólne pola wspólne dla każdego kontaktu.
     public abstract record ContactBaseDto
     {
-        // Unikalny identyfikator kontaktu.
+        // Unikalny identyfikator kontaktu
         public Guid Id { get; init; }
 
-        // Email kontaktu — wymagany, domyślnie pusty string.
+        // Email kontaktu — wymagany
         public string Email { get; init; } = string.Empty;
 
-        // Numer telefonu — wymagany, domyślnie pusty string.
+        // Numer telefonu — wymagany
         public string Phone { get; init; } = string.Empty;
 
-        // Adres kontaktu — opcjonalny (może być null).
+        // Adres kontaktu — opcjonalny
         public AddressDto? Address { get; init; }
 
-        // Status kontaktu (np. Active, Inactive, Archived).
+        // Status kontaktu (Active, Inactive, Archived)
         public ContactStatus Status { get; init; }
 
-        // Lista tagów przypisanych do kontaktu (np. "VIP", "Lead").
-        // Inicjalizowana pustą listą, aby uniknąć nulli.
+        // Lista tagów przypisanych do kontaktu
         public List<string> Tags { get; init; } = new();
 
-        // Data utworzenia kontaktu.
+        // Data utworzenia kontaktu
         public DateTime CreatedAt { get; init; }
     }
 
@@ -38,6 +37,6 @@ namespace AppCore.DTOs
         string City,        // Miasto
         string PostalCode,  // Kod pocztowy
         string Country,     // Kraj
-        AddressType Type    // Typ adresu (np. Home, Office)
+        AddressType Type    // Typ adresu (Home, Office itd.)
     );
 }

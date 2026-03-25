@@ -10,12 +10,14 @@ namespace WebApi.Controllers;
 [Route("api/contacts")]
 public class ContactsController(IPersonService service) : ControllerBase
 {
+    // GET: api/contacts?page=1&size=20
     [HttpGet]
     public async Task<IActionResult> GetAllPersons(int page = 1, int size = 20)
     {
         return Ok(await service.FindAllPeoplePaged(page, size));
     }
 
+    // GET: api/contacts/{id}
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetPerson(Guid id)
     {
@@ -30,6 +32,7 @@ public class ContactsController(IPersonService service) : ControllerBase
         }
     }
 
+    // POST: api/contacts
     [HttpPost]
     public async Task<IActionResult> Create(CreatePersonDto dto)
     {
@@ -37,6 +40,7 @@ public class ContactsController(IPersonService service) : ControllerBase
         return CreatedAtAction(nameof(GetPerson), new { id = result.Id }, result);
     }
 
+    // PUT: api/contacts/{id}
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, UpdatePersonDto dto)
     {
@@ -51,37 +55,36 @@ public class ContactsController(IPersonService service) : ControllerBase
         }
     }
 
+    // DELETE: api/contacts/{id}
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id)
     {
         await service.DeletePerson(id);
-        return NoContent();     // Status 204: operacja wykonana, nie ma co zwracać w ciele
+        return NoContent();
     }
     
+    // POST: api/contacts/{contactId}/notes
     [HttpPost("{contactId:guid}/notes")]
-    public async Task<IActionResult> AddNote([FromRoute] Guid contactId, [FromBody] CreateNoteDto dto)
+    public async Task<IActionResult> AddNote(Guid contactId, CreateNoteDto dto)
     {
-        // Wywołanie metody, którą zaimplementowaliśmy w MemoryPersonService
         var note = await service.AddNoteToPerson(contactId, dto);
-    
-        // Zwracamy status 201 (Created)
         return CreatedAtAction(nameof(GetNotes), new { contactId }, note);
     }
 
+    // GET: api/contacts/{contactId}/notes
     [HttpGet("{contactId:guid}/notes")]
     [ProducesResponseType(typeof(IEnumerable<NoteDto>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetNotes([FromRoute] Guid contactId)
+    public async Task<IActionResult> GetNotes(Guid contactId)
     {
-        // service.GetPerson zwraca PersonDto, które ma już właściwość Notes
         var person = await service.GetPerson(contactId);
-        return Ok(person.Notes); 
+        return Ok(person.Notes);
     }
     
+    // DELETE: api/contacts/{contactId}/notes/{noteId}
     [HttpDelete("{contactId:guid}/notes/{noteId:guid}")]
     public async Task<IActionResult> DeleteNote(Guid contactId, Guid noteId)
     {
         await service.DeleteNoteFromPerson(contactId, noteId);
-        return NoContent();         // zwracamy 204 No Content - w przypadku braku usuwania notatki
+        return NoContent();
     }
-
 }

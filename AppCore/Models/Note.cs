@@ -4,16 +4,11 @@ using Microsoft.VisualBasic;
 
 namespace AppCore.Models
 {
-    // Klasa Note dziedziczy po EntityBase, czyli ma wspólne pola encji (np. Id)
+    // Model notatki przypisanej do kontaktu.
     public class Note : EntityBase
     {
-        // Treść notatki — wymagane pole (string bez '?')
-        public string Content { get; set; } 
-
-        // Data utworzenia notatki
-        public DateTime CreatedAt { get; set; } = DateAndTime.Now;
-
-        // Informacja o autorze notatki — np. nazwa użytkownika
-        public string CreatedBy { get; set; }
+        public string Content { get; set; } // treść notatki
+        public DateTime CreatedAt { get; set; } = DateAndTime.Now; // data utworzenia
+        public string CreatedBy { get; set; } // autor notatki
     }
 }

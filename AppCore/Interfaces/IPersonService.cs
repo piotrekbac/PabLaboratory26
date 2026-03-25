@@ -5,6 +5,7 @@ using AppCore.Models;
 
 namespace AppCore.Interfaces;
 
+// Serwis aplikacyjny odpowiedzialny za logikę biznesową dotyczącą osób.
 public interface IPersonService
 {
     Task<PagedResult<PersonDto>> FindAllPeoplePaged(int page, int size);
@@ -14,6 +15,6 @@ public interface IPersonService
     Task<PersonDto> UpdatePerson(Guid id, UpdatePersonDto personDto);
     Task DeletePerson(Guid id);
     Task<NoteDto> AddNoteToPerson(Guid personId, CreateNoteDto noteDto);
-    Task<PersonDto> GetPerson(Guid personId); 
+    Task<PersonDto> GetPerson(Guid personId);
     Task DeleteNoteFromPerson(Guid personId, Guid noteId);
 }

@@ -17,7 +17,7 @@ Content-Type: application/json
   "gender": 0
 }
 
-### Edytuj osobę (podmień ID na takie z odpowiedzi powyżej)
+### Edytuj osobę
 PUT http://localhost:5180/api/contacts/022d06a3-dfac-404b-9505-6119b9f40661
 Content-Type: application/json
 
@@ -30,7 +30,6 @@ Content-Type: application/json
 DELETE http://localhost:5180/api/contacts/WSTAW_GUID_TUTAJ
 
 ### Dodanie notatki do osoby 
-
 POST {{WebApi_HostAddress}}/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes
 Content-Type: application/json
 
@@ -38,9 +37,9 @@ Content-Type: application/json
   "content": "To jest bardzo ważna notatka dotycząca tej osoby! Oto nasz test PBPB"
 }
 
-### Pobierz notatki dla tej osoby
+### Pobierz notatki
 GET {{WebApi_HostAddress}}/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes
 Accept: application/json
 
-### Usuwanie notatki
+### Usuń notatkę
 DELETE http://localhost:5180/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes/5d8fd591-4df2-4f55-a66d-e7aa525d7101

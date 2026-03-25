@@ -2,24 +2,25 @@ using AppCore.Models.Enums;     // Import enumów, m.in. AddressType
 
 // Piotr Bacior - WSEI Kraków
 
-namespace AppCore.Models        // Przestrzeń nazw dla modeli domenowych
+namespace AppCore.Models
 {
-    // Klasa Address dziedziczy po EntityBase (np. Id, daty utworzenia, itp.)
+    // Model domenowy reprezentujący adres kontaktu.
+    // Dziedziczy po EntityBase (zawiera m.in. Id).
     public class Address : EntityBase
     {
-        // Ulica i numer – wymagane, bo typ string bez '?' (nie jest to pole typu: nullable)
+        // Ulica i numer — wymagane
         public string Street { get; set; }
 
-        // Miasto – również wymagane
+        // Miasto — wymagane
         public string City { get; set; }
 
-        // Kod pocztowy – wymagany
+        // Kod pocztowy — wymagane
         public string PostalCode { get; set; }
 
-        // Kraj – wymagany
+        // Kraj — wymagane
         public string Country { get; set; }
 
-        // Typ adresu – enum (np. Home, Office, Billing, Shipping)
+        // Typ adresu — enum (Home, Office itd.)
         public AddressType Type { get; set; }
     }
 }

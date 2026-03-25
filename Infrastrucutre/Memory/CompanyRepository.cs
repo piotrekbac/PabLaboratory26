@@ -6,23 +6,28 @@ using Interfaces.Memory;
 
 namespace Infrastrucutre.Memory;
 
+// Repozytorium pamięciowe dla Company — rozszerza generyczne repozytorium
 public class CompanyRepository : MemoryGenericRepository<Company>, ICompanyRepository
 {
+    // Wyszukiwanie firm po fragmencie nazwy
     public async Task<IEnumerable<Company>> FindByNameAsync(string nameQuery)
     {
-        // Wykorzystujemy protected _data z klasy bazowej MemoryGenericRepository
-        return await Task.FromResult(_data.Values.Where(c => c.Name.Contains(nameQuery, StringComparison.OrdinalIgnoreCase)));
+        return await Task.FromResult(
+            _data.Values.Where(c => c.Name.Contains(nameQuery, StringComparison.OrdinalIgnoreCase))
+        );
     }
 
+    // Wyszukiwanie firmy po NIP
     public async Task<Company?> FindByNipAsync(string nip)
     {
-        return await Task.FromResult(_data.Values.FirstOrDefault(c => c.NIP == nip));
+        return await Task.FromResult(
+            _data.Values.FirstOrDefault(c => c.NIP == nip)
+        );
     }
 
+    // Pobieranie pracowników firmy
     public async Task<IEnumerable<Person>> GetEmployeesAsync(Guid companyId)
     {
-        // Pobieramy wszystkich z PersonRepository (wymagałoby to wstrzyknięcia IPersonRepository)
-        // LUB jeśli trzymamy listę pracowników w klasie Company:
         var company = await FindByIdAsync(companyId);
         return company?.Employees ?? Enumerable.Empty<Person>();
     }

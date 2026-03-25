@@ -5,26 +5,25 @@ using AppCore.DTOs;
 namespace AppCore.Interfaces
 {
     // Ogólny interfejs repozytorium asynchronicznego.
-    // T oznacza dowolny typ encji (np. Person, Company, Organization).
+    // T — dowolna encja domenowa.
     public interface IGenericRepositoryAsync<T> where T : class
     {
-        // Pobiera encję po identyfikatorze. Zwraca null, jeśli nie istnieje.
+        // Pobiera encję po ID.
         Task<T?> FindByIdAsync(Guid id);
 
-        // Pobiera wszystkie encje danego typu.
+        // Pobiera wszystkie encje.
         Task<IEnumerable<T>> FindAllAsync();
 
-        // Pobiera encje w sposób stronicowany (paginacja).
-        // Zwraca obiekt PagedResult<T> zawierający dane i metadane paginacji.
+        // Pobiera encje w sposób stronicowany.
         Task<PagedResult<T>> FindPagedAsync(int page, int pageSize);
 
-        // Dodaje nową encję do repozytorium i zwraca ją po zapisaniu.
+        // Dodaje nową encję.
         Task<T> AddAsync(T entity);
 
-        // Aktualizuje istniejącą encję i zwraca jej zaktualizowaną wersję.
+        // Aktualizuje istniejącą encję.
         Task<T> UpdateAsync(T entity);
 
-        // Usuwa encję po identyfikatorze.
+        // Usuwa encję po ID.
         Task RemoveByIdAsync(Guid id);
     }
 }

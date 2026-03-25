@@ -5,34 +5,20 @@ using AppCore.Models.Enums;         // Import enumów, m.in. Gender
 
 namespace AppCore.Models
 {
-    // Person dziedziczy po Contact, więc ma Email, Phone, Address, Status, Tags, Notes itd.
+    // Encja Person dziedziczy po Contact.
     public class Person : Contact
     {
-        // Imię — wymagane, inicjalizowane pustym stringiem
-        public string FirstName { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty; // imię
+        public string LastName { get; set; } = string.Empty;  // nazwisko
+        public string? MiddleName { get; set; }               // drugie imię
+        public DateTime? BirthDate { get; set; }              // data urodzenia
+        public Gender Gender { get; set; }                    // płeć
+        public string? Position { get; set; }                 // stanowisko
 
-        // Nazwisko — wymagane, inicjalizowane pustym stringiem
-        public string LastName { get; set; } = string.Empty;
+        public Organization? Organization { get; set; }       // organizacja
+        public Company? Employer { get; set; }                // firma
 
-        // Drugie imię — opcjonalne
-        public string? MiddleName { get; set; }
-
-        // Data urodzenia — opcjonalna
-        public DateTime? BirthDate { get; set; }
-
-        // Płeć — enum (np. Male, Female, Other)
-        public Gender Gender { get; set; }
-
-        // Stanowisko (np. Manager, Developer) — opcjonalne
-        public string? Position { get; set; }
-
-        // Organizacja, do której osoba należy — opcjonalna
-        public Organization? Organization { get; set; }
-
-        // Firma, w której osoba pracuje — opcjonalna
-        public Company? Employer { get; set; }
-        
-        // Konwersja na DTO (Data Transfer Object) -> przekształca encję na PersonDto
+        // Konwersja encji → DTO
         public PersonDto ToDto() => new()
         {
             Id = this.Id,
@@ -45,8 +31,8 @@ namespace AppCore.Models
             Gender = this.Gender,
             EmployerId = this.Employer?.Id
         };
-        
-        // Nadpisanie metody z Contact — zwraca imię i nazwisko
+
+        // Wyświetlana nazwa osoby
         public override string GetDisplayName() => $"{FirstName} {LastName}";
     }
 }

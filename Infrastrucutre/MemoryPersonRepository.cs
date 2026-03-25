@@ -5,13 +5,14 @@ using Interfaces.Memory;
 
 // Piotr Bacior - WSEI Kraków
 
-namespace Infrastrucutre.Memory; 
+namespace Infrastrucutre.Memory;
 
+// Repozytorium pamięciowe dla Person
 public class MemoryPersonRepository : MemoryGenericRepository<Person>, IPersonRepository
 {
     public MemoryPersonRepository() : base()
     {
-        // Dodajemy przykładowe dane
+        // Dodajemy przykładową osobę
         var id = Guid.NewGuid();
         _data.Add(id, new Person()
         {
@@ -23,10 +24,12 @@ public class MemoryPersonRepository : MemoryGenericRepository<Person>, IPersonRe
         });
     }
 
+    // Pobieranie pracowników firmy
     public async Task<IEnumerable<Person>> GetEmployeesByCompanyAsync(Guid companyId)
     {
-        // Używamy pola _data (teraz protected) z klasy bazowej
-        return await Task.FromResult(_data.Values.Where(p => p.Employer != null && p.Employer.Id == companyId));
+        return await Task.FromResult(
+            _data.Values.Where(p => p.Employer != null && p.Employer.Id == companyId)
+        );
     }
 
     public Task<IEnumerable<Person>> GetMembersByOrganizationAsync(Guid organizationId)
