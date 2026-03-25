@@ -2,6 +2,8 @@
 using Interfaces.Memory;
 using Xunit;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace UnitTests;
 
 // Testy wykonam w dobrze znanej metodyce AAA (Arange, Act, Assert)

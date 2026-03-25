@@ -1,3 +1,5 @@
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models
 {
     // Tag dziedziczy po EntityBase, więc ma już podstawowe pola encji (np. Id)

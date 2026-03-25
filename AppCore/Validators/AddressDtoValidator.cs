@@ -1,6 +1,8 @@
 using AppCore.DTOs;
 using FluentValidation;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Validators;
 
 public class AddressDtoValidator : AbstractValidator<AddressDto>

@@ -1,3 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
+// Piotr Bacior - WSEI Kraków
+
+Console.WriteLine("Witaj PB-WSEI-KRAKÓW");
+

@@ -4,6 +4,8 @@ using AppCore.Services;
 using Infrastrucutre.Memory;
 using Interfaces.Memory; 
 
+// Piotr Bacior - WSEI Kraków
+
 namespace WebApi;
 
 public class Program
@@ -31,6 +33,8 @@ public class Program
         builder.Services.AddSingleton<IPersonRepository, MemoryPersonRepository>();
         builder.Services.AddSingleton<ICompanyRepository, MemoryCompanyRepository>();
         builder.Services.AddSingleton<IOrganizationRepository, MemoryOrganizationRepository>();
+        builder.Services.AddExceptionHandler<WebApi.Middleware.ProblemDetailsExceptionHandler>();
+        builder.Services.AddProblemDetails();
         
         // 2. Rejestracja UnitOfWork
         // UnitOfWork grupuje repozytoria. Używamy fabryki (sp => ...), aby wstrzyknąć 
@@ -77,6 +81,10 @@ public class Program
         // Dzięki temu kontroler ContactsController zostanie automatycznie wykryty przez API.
         app.MapControllers(); 
 
+        
+        app.UseExceptionHandler();
+        app.MapControllers();
+        
         app.Run();
     }
 }

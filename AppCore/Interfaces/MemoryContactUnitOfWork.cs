@@ -1,5 +1,7 @@
 using AppCore.Interfaces;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace Interfaces.Memory;
 
 public class MemoryContactUnitOfWork(

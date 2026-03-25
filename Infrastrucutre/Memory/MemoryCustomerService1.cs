@@ -1,6 +1,8 @@
 using AppCore.Interfaces;
 using AppCore.Models;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace Infrastrucutre.Memory;
 
 public class MemoryCustomerService1 : ICustomerService

@@ -1,5 +1,7 @@
 using AppCore.Models.Enums;     // Import enumów, m.in. AddressType
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models        // Przestrzeń nazw dla modeli domenowych
 {
     // Klasa Address dziedziczy po EntityBase (np. Id, daty utworzenia, itp.)

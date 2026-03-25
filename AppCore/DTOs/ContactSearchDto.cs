@@ -1,5 +1,7 @@
 using AppCore.Models.Enums; // Import enumów (np. ContactStatus)
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.DTOs
 {
     // Rekord reprezentujący zestaw kryteriów wyszukiwania kontaktów.

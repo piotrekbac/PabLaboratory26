@@ -1,6 +1,8 @@
 using AppCore.DTOs;
 using AppCore.Models;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Interfaces
 {
     // Repozytorium dla encji Contact. Dziedziczy po generycznym repozytorium, więc ma już:

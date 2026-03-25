@@ -1,5 +1,7 @@
 using AppCore.Interfaces;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Interfaces;
 
 public interface IContactUnitOfWork : IAsyncDisposable

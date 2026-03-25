@@ -1,5 +1,7 @@
 using AppCore.Models.Enums; // Import enumów (ContactStatus, AddressType)
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.DTOs
 {
     // Bazowy DTO dla wszystkich typów kontaktów (Person, Company, Organization).

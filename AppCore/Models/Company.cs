@@ -1,6 +1,8 @@
 using AppCore.DTOs;
 using AppCore.Models.Enums;     
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models 
 {
     // Klasa Company dziedziczy po klasie Contact

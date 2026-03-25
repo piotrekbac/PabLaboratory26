@@ -1,5 +1,7 @@
 using AppCore.Models.Enums; // Import enumów, m.in. ContactStatus
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models
 {
     // Klasa abstrakcyjna Contact — nie można utworzyć jej instancji.

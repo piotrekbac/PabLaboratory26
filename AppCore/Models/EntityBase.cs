@@ -1,5 +1,7 @@
 namespace AppCore.Models;
 
+// Piotr Bacior - WSEI Kraków
+
 public abstract class EntityBase
 {
     // Automatyczne generowanie GUID przy tworzeniu

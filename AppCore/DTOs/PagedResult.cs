@@ -1,5 +1,7 @@
 using System.Collections.Generic; // Kluczowe — bez tego List<T> nie byłby widoczny
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.DTOs
 {
     // Rekord generyczny reprezentujący wynik stronicowany (paged result).

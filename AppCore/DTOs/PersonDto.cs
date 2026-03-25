@@ -1,6 +1,8 @@
 using AppCore.Models;           // Wymagane dla metody ToEntity()
 using AppCore.Models.Enums;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.DTOs;
 
 // DTO reprezentujący osobę zwracaną na zewnątrz.
@@ -12,6 +14,7 @@ public record PersonDto : ContactBaseDto
     public DateTime? BirthDate { get; init; }
     public Gender Gender { get; init; }
     public Guid? EmployerId { get; init; }
+    public List<NoteDto> Notes { get; init; } = new(); 
 }
 
 // DTO używane przy tworzeniu nowej osoby.

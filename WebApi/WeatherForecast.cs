@@ -1,5 +1,7 @@
 namespace WebApi;
 
+// Piotr Bacior - WSEI Kraków
+
 public class WeatherForecast
 {
     public DateOnly Date { get; set; }

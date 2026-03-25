@@ -1,6 +1,8 @@
 using AppCore.Models;
 using AppCore.Models.Enums;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Interfaces
 {
     // Repozytorium dla encji Organization.

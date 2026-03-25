@@ -1,5 +1,7 @@
 using AppCore.Models.Enums;     // Import enumów, m.in. OrganizationType
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models
 {
     // Organization dziedziczy po Contact, więc ma Email, Phone, Address, Status, Tags, Notes itd.

@@ -3,6 +3,8 @@ using AppCore.Models;
 using AppCore.Models.Enums;
 using Interfaces.Memory;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace Infrastrucutre.Memory; 
 
 public class MemoryPersonRepository : MemoryGenericRepository<Person>, IPersonRepository

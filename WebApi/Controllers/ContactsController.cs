@@ -2,6 +2,8 @@ using AppCore.DTOs;
 using AppCore.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace WebApi.Controllers;
 
 [ApiController]
@@ -53,6 +55,33 @@ public class ContactsController(IPersonService service) : ControllerBase
     public async Task<IActionResult> Delete(Guid id)
     {
         await service.DeletePerson(id);
-        return NoContent(); // Status 204: operacja wykonana, nie ma co zwracać w ciele
+        return NoContent();     // Status 204: operacja wykonana, nie ma co zwracać w ciele
     }
+    
+    [HttpPost("{contactId:guid}/notes")]
+    public async Task<IActionResult> AddNote([FromRoute] Guid contactId, [FromBody] CreateNoteDto dto)
+    {
+        // Wywołanie metody, którą zaimplementowaliśmy w MemoryPersonService
+        var note = await service.AddNoteToPerson(contactId, dto);
+    
+        // Zwracamy status 201 (Created)
+        return CreatedAtAction(nameof(GetNotes), new { contactId }, note);
+    }
+
+    [HttpGet("{contactId:guid}/notes")]
+    [ProducesResponseType(typeof(IEnumerable<NoteDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetNotes([FromRoute] Guid contactId)
+    {
+        // service.GetPerson zwraca PersonDto, które ma już właściwość Notes
+        var person = await service.GetPerson(contactId);
+        return Ok(person.Notes); 
+    }
+    
+    [HttpDelete("{contactId:guid}/notes/{noteId:guid}")]
+    public async Task<IActionResult> DeleteNote(Guid contactId, Guid noteId)
+    {
+        await service.DeleteNoteFromPerson(contactId, noteId);
+        return NoContent();         // zwracamy 204 No Content - w przypadku braku usuwania notatki
+    }
+
 }

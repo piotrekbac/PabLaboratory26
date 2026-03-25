@@ -3,6 +3,8 @@ using AppCore.Models;
 using AppCore.Models.Enums;
 using Interfaces.Memory;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace Infrastrucutre.Memory; // Upewnij się, że nazwa namespace jest identyczna w całym projekcie
 
 public class MemoryOrganizationRepository : MemoryGenericRepository<Organization>, IOrganizationRepository

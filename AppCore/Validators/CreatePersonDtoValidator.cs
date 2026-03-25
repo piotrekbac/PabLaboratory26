@@ -2,6 +2,8 @@ using AppCore.DTOs;
 using AppCore.Interfaces;
 using FluentValidation;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Validators;
 
 public class CreatePersonDtoValidator : AbstractValidator<CreatePersonDto>

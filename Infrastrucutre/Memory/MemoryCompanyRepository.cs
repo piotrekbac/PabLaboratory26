@@ -2,6 +2,8 @@ using AppCore.Interfaces;
 using AppCore.Models;
 using Interfaces.Memory;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace Infrastrucutre.Memory;
 
 public class MemoryCompanyRepository : MemoryGenericRepository<Company>, ICompanyRepository

@@ -2,6 +2,8 @@ using AutoMapper;
 using AppCore.Models;
 using AppCore.DTOs;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Mapper;
 
 public class ContactsMappingProfile : Profile
@@ -19,5 +21,12 @@ public class ContactsMappingProfile : Profile
         
         // Mapowanie adresu
         CreateMap<Address, AddressDto>().ReverseMap();
+        
+        // Tworzenie i mapowanie notatki
+        CreateMap<Person, PersonDto>();
+        CreateMap<Note, NoteDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id)) // Wymuś mapowanie ID
+            .ReverseMap();
+        
     }
 }

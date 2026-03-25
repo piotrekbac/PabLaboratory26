@@ -1,5 +1,7 @@
 using AppCore.ValueObjects;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models;
 
 public class Address1

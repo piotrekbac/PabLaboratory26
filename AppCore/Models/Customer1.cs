@@ -1,5 +1,7 @@
 namespace AppCore.Models;
 
+// Piotr Bacior - WSEI Kraków
+
 public class Customer1
 {
     // prop (i podpowiada dalej)

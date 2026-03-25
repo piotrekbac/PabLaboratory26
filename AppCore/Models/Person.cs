@@ -1,6 +1,8 @@
 using AppCore.DTOs;
 using AppCore.Models.Enums;         // Import enumów, m.in. Gender
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Models
 {
     // Person dziedziczy po Contact, więc ma Email, Phone, Address, Status, Tags, Notes itd.

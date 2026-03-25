@@ -1,5 +1,7 @@
 using AppCore.DTOs;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Interfaces
 {
     // Ogólny interfejs repozytorium asynchronicznego.

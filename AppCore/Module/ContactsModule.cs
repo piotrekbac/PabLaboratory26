@@ -4,6 +4,8 @@ using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.Module;
 
 public static class ContactsModule

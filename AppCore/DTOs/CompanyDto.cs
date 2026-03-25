@@ -1,5 +1,7 @@
 using AppCore.Models;
 
+// Piotr Bacior - WSEI Kraków
+
 namespace AppCore.DTOs;
 
 public record CompanyDto
