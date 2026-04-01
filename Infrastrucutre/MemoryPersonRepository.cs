@@ -32,6 +32,7 @@ public class MemoryPersonRepository : MemoryGenericRepository<Person>, IPersonRe
         );
     }
 
+    // Pobieranie członków organizacji
     public Task<IEnumerable<Person>> GetMembersByOrganizationAsync(Guid organizationId)
     {
         throw new NotImplementedException();

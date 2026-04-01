@@ -2507,23 +2507,23 @@
     ]
   },
   "packageFolders": {
-    "D:\\Users\\piotr.bacior\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Piotr\\.nuget\\packages\\": {},
+    "D:\\Udostepniane VisualStudio\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore.Tests\\AppCore.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore.Tests\\AppCore.Tests.csproj",
       "projectName": "AppCore.Tests",
-      "projectPath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore.Tests\\AppCore.Tests.csproj",
-      "packagesPath": "D:\\Users\\piotr.bacior\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore.Tests\\obj\\",
+      "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore.Tests\\AppCore.Tests.csproj",
+      "packagesPath": "C:\\Users\\Piotr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Udostepniane VisualStudio\\NuGetPackages"
       ],
       "configFilePaths": [
-        "D:\\Users\\piotr.bacior\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Piotr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2532,18 +2532,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore\\AppCore.csproj": {
-              "projectPath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore\\AppCore.csproj"
+            "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj": {
+              "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj"
             },
-            "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\Infrastrucutre\\Infrastrucutre.csproj": {
-              "projectPath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\Infrastrucutre\\Infrastrucutre.csproj"
+            "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj": {
+              "projectPath": "C:\\Users\\Piotr\\RiderProjects\\PabLaboratory26\\Infrastrucutre\\Infrastrucutre.csproj"
             }
           }
         }
@@ -2597,7 +2596,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

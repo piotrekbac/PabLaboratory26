@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace AppCore.Validators;
 
-// Walidator DTO adresu — sprawdza poprawność pól.
+// Walidator DTO adresu — sprawdza poprawność pól
 public class AddressDtoValidator : AbstractValidator<AddressDto>
 {
     public AddressDtoValidator()
@@ -21,7 +21,7 @@ public class AddressDtoValidator : AbstractValidator<AddressDto>
 
         RuleFor(x => x.Country).NotEmpty().MaximumLength(100);
 
-        // Typ adresu musi być poprawnym enumem.
+        // Typ adresu musi być poprawnym enumem
         RuleFor(x => x.Type).IsInEnum();
     }
 }

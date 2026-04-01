@@ -7,7 +7,7 @@ namespace AppCore.Models
     public class Tag : EntityBase
     {
         // Dodatkowy identyfikator — UWAGA: duplikuje Id z EntityBase.
-        // W praktyce nie powinno się dublować kluczy — pozostawione zgodnie z Twoim kodem.
+        // W praktyce nie powinno się dublować kluczy
         //public Guid id { get; set; }
 
         // Nazwa tagu — np. "VIP", "Lead", "Partner".

@@ -10,11 +10,20 @@ POST http://localhost:5180/api/contacts/
 Content-Type: application/json
 
 {
-  "firstName": "Piotr",
-  "lastName" : "Broś",
-  "email": "piotr@wsei.edu.pl",
-  "phone": "48 341 654 789",
-  "gender": 0
+  "firstName": "Jan",
+  "lastName": "Miszal",
+  "email": "jan.miszal@example.com",
+  "phone": "48 124 466 789",
+  "position": "Junior Developer",
+  "birthDate": "2005-05-15T00:00:00",
+  "gender": 0,
+  "address": {
+    "street": "ul. Główna 4",
+    "city": "Kraków",
+    "postalCode": "30-002",
+    "country": "Polska",
+    "type": 0
+  }
 }
 
 ### Edytuj osobę
@@ -23,7 +32,8 @@ Content-Type: application/json
 
 {
   "firstName": "Krzysztof",
-  "lastName" : "Kowalski"
+  "lastName" : "Kowalski",
+  "position": "Senior Developer"
 }
 
 ### Usuń osobę

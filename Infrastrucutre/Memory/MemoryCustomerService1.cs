@@ -31,7 +31,7 @@ public class MemoryCustomerService1 : ICustomerService
         ];
     }
 
-    // podczas labolatorium2 powiedziano, że można usunąć ten interfejs, ale ja go zostawiam podglądowo. 
+    // podczas labolatorium2 powiedziano, że można usunąć ten interfejs, ale ja go zostawiam podglądowo
     
     public Task<IEnumerable<Customer1>> GetCustomersAsync()
     {

@@ -6,8 +6,8 @@ using FluentValidation;
 
 namespace AppCore.Validators;
 
-// Walidator DTO tworzenia osoby.
-// Sprawdza poprawność imienia, nazwiska, emaila, telefonu itd.
+// Walidator DTO tworzenia osoby
+// Sprawdza poprawność imienia, nazwiska, emaila, telefonu itd
 public class CreatePersonDtoValidator : AbstractValidator<CreatePersonDto>
 {
     private readonly ICompanyRepository _companyRepository;

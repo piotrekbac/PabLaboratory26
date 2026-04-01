@@ -1,24 +1,27 @@
 using AppCore.DTOs;
-using AppCore.Models.Enums;         // Import enumów, m.in. Gender
+using AppCore.Models.Enums;
 
 // Piotr Bacior - WSEI Kraków
 
 namespace AppCore.Models
 {
-    // Encja Person dziedziczy po Contact.
     public class Person : Contact
     {
-        public string FirstName { get; set; } = string.Empty; // imię
-        public string LastName { get; set; } = string.Empty;  // nazwisko
-        public string? MiddleName { get; set; }               // drugie imię
-        public DateTime? BirthDate { get; set; }              // data urodzenia
-        public Gender Gender { get; set; }                    // płeć
-        public string? Position { get; set; }                 // stanowisko
+        public string FirstName { get; set; } = string.Empty; // Imię
+        public string LastName { get; set; } = string.Empty;  // Nazwisko
+        public string? MiddleName { get; set; }               // Drugie imię
+        public DateTime? BirthDate { get; set; }              // Data urodzenia
+        public Gender Gender { get; set; }                    // Płeć
+        public string? Position { get; set; }                 // Stanowisko
 
-        public Organization? Organization { get; set; }       // organizacja
-        public Company? Employer { get; set; }                // firma
+        // Klucze obce dla relacji
+        public Guid? OrganizationId { get; set; }
+        public Organization? Organization { get; set; }       // Organizacja
+        
+        public Guid? EmployerId { get; set; }
+        public Company? Employer { get; set; }                // Firma
 
-        // Konwersja encji → DTO
+        // Konwersja encji na DTO
         public PersonDto ToDto() => new()
         {
             Id = this.Id,
@@ -29,10 +32,9 @@ namespace AppCore.Models
             Position = this.Position,
             BirthDate = this.BirthDate,
             Gender = this.Gender,
-            EmployerId = this.Employer?.Id
+            EmployerId = this.EmployerId
         };
 
-        // Wyświetlana nazwa osoby
         public override string GetDisplayName() => $"{FirstName} {LastName}";
     }
 }

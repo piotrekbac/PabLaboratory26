@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.EntityFramework.Repositories
 {
-    // Repozytorium generyczne dla EF Core. 
-    // Wymaga, aby encja dziedziczyła po EntityBase.
+    // Repozytorium generyczne dla EF Core.
+    // Wymaga, aby encja dziedziczyła po EntityBase
     public class EfGenericRepository<T>(DbSet<T> set) : IGenericRepositoryAsync<T> 
         where T : EntityBase
     {
@@ -23,7 +23,7 @@ namespace Infrastructure.EntityFramework.Repositories
         {
             var totalCount = await set.CountAsync();
             var items = await set
-                .AsNoTracking() // Zwiększa wydajność, bo nie śledzimy zmian
+                .AsNoTracking()     // Zwiększa wydajność, bo nie śledzimy zmian
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();

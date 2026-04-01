@@ -10,17 +10,17 @@ namespace AppCore.Module;
 
 public static class ContactsModule
 {
-    // Metoda rozszerzająca — pozwala dodać moduł kontaktów do DI.
+    // Metoda rozszerzająca — pozwala dodać moduł kontaktów do DI
     public static IServiceCollection AddContactsModule(
         this IServiceCollection services,
         IConfiguration configuration)
     {
         // 1. Rejestracja walidatorów FluentValidation
-        // Automatycznie znajdzie wszystkie klasy Validator w tym assembly.
+        // Automatycznie znajdzie wszystkie klasy Validator w tym assembly
         services.AddValidatorsFromAssemblyContaining<CreatePersonDtoValidator>();
         
         // 2. Rejestracja AutoMappera
-        // AutoMapper przeskanuje assembly i znajdzie ContactsMappingProfile.
+        // AutoMapper przeskanuje assembly i znajdzie ContactsMappingProfile
         services.AddAutoMapper(typeof(ContactsMappingProfile).Assembly);
         
         return services;

@@ -4,8 +4,8 @@ using AppCore.Models.Enums;     // Import enumów, m.in. AddressType
 
 namespace AppCore.Models
 {
-    // Model domenowy reprezentujący adres kontaktu.
-    // Dziedziczy po EntityBase (zawiera m.in. Id).
+    // Model domenowy reprezentujący adres kontaktu
+    // Dziedziczy po EntityBase (zawiera m.in. Id)
     public class Address : EntityBase
     {
         // Ulica i numer — wymagane
