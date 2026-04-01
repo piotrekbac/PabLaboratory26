@@ -8,12 +8,12 @@ namespace AppCore.Models
     {
         // Dodatkowy identyfikator — UWAGA: duplikuje Id z EntityBase.
         // W praktyce nie powinno się dublować kluczy — pozostawione zgodnie z Twoim kodem.
-        public Guid id { get; set; }
+        //public Guid id { get; set; }
 
         // Nazwa tagu — np. "VIP", "Lead", "Partner".
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         // Kolor tagu — np. "#FF0000" lub "red".
-        public string Color { get; set; }
+        public string Color { get; set; } = string.Empty;
     }
 }

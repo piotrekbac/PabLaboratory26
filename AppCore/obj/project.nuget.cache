@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sQTkwgdDBGk=",
+  "dgSpecHash": "ZGMGVFvwaOc=",
   "success": true,
-  "projectFilePath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
+  "projectFilePath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore\\AppCore.csproj",
   "expectedPackageFiles": [
     "D:\\Users\\piotr.bacior\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "D:\\Users\\piotr.bacior\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -20,9 +20,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'AutoMapper' 12.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
-      "projectPath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
+      "projectPath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore\\AppCore.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Users\\piotr.bacior\\RiderProjects\\PabLaboratory26\\AppCore\\AppCore.csproj",
+      "filePath": "D:\\Users\\piotr.bacior\\Desktop\\Aplikacje backendowe\\AppCore\\AppCore.csproj",
       "libraryId": "AutoMapper",
       "targetGraphs": [
         "net9.0"

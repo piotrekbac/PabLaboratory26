@@ -30,7 +30,7 @@ Content-Type: application/json
 DELETE http://localhost:5180/api/contacts/WSTAW_GUID_TUTAJ
 
 ### Dodanie notatki do osoby 
-POST {{WebApi_HostAddress}}/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes
+POST {{WebApi_HostAddress}}/api/contacts/db0e4aca-71c0-466c-9847-d3dd4ba9b522/notes
 Content-Type: application/json
 
 {
@@ -38,8 +38,8 @@ Content-Type: application/json
 }
 
 ### Pobierz notatki
-GET {{WebApi_HostAddress}}/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes
+GET {{WebApi_HostAddress}}/api/contacts/db0e4aca-71c0-466c-9847-d3dd4ba9b522/notes
 Accept: application/json
 
 ### Usuń notatkę
-DELETE http://localhost:5180/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes/5d8fd591-4df2-4f55-a66d-e7aa525d7101
+DELETE http://localhost:5180/api/contacts/db0e4aca-71c0-466c-9847-d3dd4ba9b522/notes/6ebaa64f-19ef-433c-a14e-41cd7a3906a0

@@ -1,8 +1,11 @@
 using AppCore.Interfaces;
 using AppCore.Module;
 using AppCore.Services;
-using Infrastrucutre.Memory;
-using Interfaces.Memory; 
+using Infrastructure.EntityFramework.Context;
+using Infrastructure.EntityFramework.Repositories;
+using Infrastructure.EntityFramework.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
+using WebApi.Middleware;
 
 // Piotr Bacior - WSEI Kraków
 
@@ -14,60 +17,44 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Rejestracja kontrolerów — kluczowe dla działania API
+        // Rejestracja MVC/API
         builder.Services.AddControllers();
         builder.Services.AddAuthorization();
-
-        // Rejestracja OpenAPI (Swagger)
         builder.Services.AddOpenApi();
 
-        // Stare repozytorium z lab 2 — pozostawione poglądowo
-        builder.Services.AddSingleton<ICustomerService, MemoryCustomerService1>();
-
-        // Rejestracja repozytoriów pamięciowych
-        builder.Services.AddSingleton<IPersonRepository, MemoryPersonRepository>();
-        builder.Services.AddSingleton<ICompanyRepository, MemoryCompanyRepository>();
-        builder.Services.AddSingleton<IOrganizationRepository, MemoryOrganizationRepository>();
-
-        // Rejestracja globalnego handlera wyjątków
-        builder.Services.AddExceptionHandler<WebApi.Middleware.ProblemDetailsExceptionHandler>();
-        builder.Services.AddProblemDetails();
-        
-        // Rejestracja UnitOfWork — łączy repozytoria w jedną transakcję
-        builder.Services.AddSingleton<IContactUnitOfWork>(sp =>
-        {
-            var persons = sp.GetRequiredService<IPersonRepository>();
-            var companies = sp.GetRequiredService<ICompanyRepository>();
-            var orgs = sp.GetRequiredService<IOrganizationRepository>();
-            return new MemoryContactUnitOfWork(persons, companies, orgs);
-        });
-
-        // Rejestracja głównego serwisu biznesowego
-        builder.Services.AddSingleton<IPersonService, MemoryPersonService>();
-        
-        // Rejestracja modułu kontaktów (AutoMapper + walidatory)
+        // Rejestracja Modułu (Walidatory i AutoMapper)
         builder.Services.AddContactsModule(builder.Configuration);
-        
+
+        // Konfiguracja Bazy Danych (Entity Framework Core)
+        // Pobieramy ConnectionString z appsettings.json
+        builder.Services.AddDbContext<ContactsDbContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("CrmDb")));
+
+        // Rejestracja Repozytoriów (Entity Framework)
+        builder.Services.AddScoped<IPersonRepository, EfPersonRepository>();
+        builder.Services.AddScoped<ICompanyRepository, EfCompanyRepository>();
+        builder.Services.AddScoped<IOrganizationRepository, EfOrganizationRepository>();
+
+        // Rejestracja UnitOfWork (Entity Framework)
+        builder.Services.AddScoped<IContactUnitOfWork, EfContactsUnitOfWork>();
+
+        // Rejestracja Serwisów
+        builder.Services.AddScoped<IPersonService, MemoryPersonService>();
+
+        // Obsługa wyjątków
+        builder.Services.AddExceptionHandler<ProblemDetailsExceptionHandler>();
+        builder.Services.AddProblemDetails();
+
         var app = builder.Build();
 
-        // Swagger tylko w trybie developerskim
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
         }
 
+        app.UseExceptionHandler(); // Musi być przed routingiem/kontrolerami
         app.UseAuthorization();
-
-        // Endpoint z lab 2 — pozostawiony poglądowo
-        app.MapGet("/api/customers", (ICustomerService service) =>
-            service.GetCustomers()
-        ).WithName("GetCustomers");
-
-        // Automatyczne mapowanie kontrolerów
         app.MapControllers();
-
-        // Globalny handler wyjątków
-        app.UseExceptionHandler();
 
         app.Run();
     }
