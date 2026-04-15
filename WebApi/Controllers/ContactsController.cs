@@ -1,5 +1,6 @@
 using AppCore.DTOs;
 using AppCore.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // Piotr Bacior - WSEI Kraków
@@ -8,6 +9,7 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/contacts")]
+[Authorize]
 public class ContactsController(IPersonService service) : ControllerBase
 {
     // GET: api/contacts?page=1&size=20

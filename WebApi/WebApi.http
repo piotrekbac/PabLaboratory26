@@ -10,20 +10,11 @@ POST http://localhost:5180/api/contacts/
 Content-Type: application/json
 
 {
-  "firstName": "Jan",
-  "lastName": "Miszal",
-  "email": "jan.miszal@example.com",
-  "phone": "48 124 466 789",
-  "position": "Junior Developer",
-  "birthDate": "2005-05-15T00:00:00",
-  "gender": 0,
-  "address": {
-    "street": "ul. Główna 4",
-    "city": "Kraków",
-    "postalCode": "30-002",
-    "country": "Polska",
-    "type": 0
-  }
+  "firstName": "Krzysiu",
+  "lastName" : "Mizoń",
+  "email": "krzysiumizon@wsei.edu.pl",
+  "phone": "48 221 555 777",
+  "gender": 0
 }
 
 ### Edytuj osobę
@@ -32,15 +23,14 @@ Content-Type: application/json
 
 {
   "firstName": "Krzysztof",
-  "lastName" : "Kowalski",
-  "position": "Senior Developer"
+  "lastName" : "Kowalski"
 }
 
 ### Usuń osobę
 DELETE http://localhost:5180/api/contacts/WSTAW_GUID_TUTAJ
 
 ### Dodanie notatki do osoby 
-POST {{WebApi_HostAddress}}/api/contacts/db0e4aca-71c0-466c-9847-d3dd4ba9b522/notes
+POST {{WebApi_HostAddress}}/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes
 Content-Type: application/json
 
 {
@@ -48,8 +38,30 @@ Content-Type: application/json
 }
 
 ### Pobierz notatki
-GET {{WebApi_HostAddress}}/api/contacts/db0e4aca-71c0-466c-9847-d3dd4ba9b522/notes
+GET {{WebApi_HostAddress}}/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes
 Accept: application/json
 
 ### Usuń notatkę
-DELETE http://localhost:5180/api/contacts/db0e4aca-71c0-466c-9847-d3dd4ba9b522/notes/6ebaa64f-19ef-433c-a14e-41cd7a3906a0
+DELETE http://localhost:5180/api/contacts/2fb0e55a-63db-4928-b7f8-7e44e0f7ff0a/notes/5d8fd591-4df2-4f55-a66d-e7aa525d7101
+
+### =======================================================
+
+### 1. Logowanie
+# @name login
+POST {{WebApi_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@crm.pl",
+  "password": "Admin@123!"
+}
+
+### 2. Pobranie kontaktów
+GET {{WebApi_HostAddress}}/api/contacts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IkY1QkFERTE0LTZDQzgtNDJBMi05QTQ0LTk4NDJEQTJEOTI4MCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQGNybS5wbCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6IkFkYW0iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiQWRtaW5pc3RyYXRvciIsImRlcGFydG1lbnQiOiJJVCIsInN0YXR1cyI6IkFjdGl2ZSIsImp0aSI6ImJiNzEzMjAzLWU4ZGQtNGVkYS1hZGFiLWM4NGU1OTMwMjBhYyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmF0b3IiLCJuYmYiOjE3NzYyNDI4NDIsImV4cCI6MTc3NjI0NjQ0MiwiaXNzIjoiSWRlaXNDcm1BcGkiLCJhdWQiOiJDcm1DbGllbnQifQ.Fv8zapeg8v2g114AwMBNRbi-hwSRujDIOrM0y2bcKno
+Accept: application/json
+
+### 3. Pobranie danych o sobie
+GET {{WebApi_HostAddress}}/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IkY1QkFERTE0LTZDQzgtNDJBMi05QTQ0LTk4NDJEQTJEOTI4MCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQGNybS5wbCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6IkFkYW0iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiQWRtaW5pc3RyYXRvciIsImRlcGFydG1lbnQiOiJJVCIsInN0YXR1cyI6IkFjdGl2ZSIsImp0aSI6ImJiNzEzMjAzLWU4ZGQtNGVkYS1hZGFiLWM4NGU1OTMwMjBhYyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmF0b3IiLCJuYmYiOjE3NzYyNDI4NDIsImV4cCI6MTc3NjI0NjQ0MiwiaXNzIjoiSWRlaXNDcm1BcGkiLCJhdWQiOiJDcm1DbGllbnQifQ.Fv8zapeg8v2g114AwMBNRbi-hwSRujDIOrM0y2bcKno
+Accept: application/json

@@ -1,6 +1,7 @@
 using AppCore.Models;
 using AppCore.Models.Enums;
 using Infrastructure.EntityFramework.Entities;
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,12 @@ namespace Infrastructure.EntityFramework.Context;
 
 public class ContactsDbContext : IdentityDbContext<CrmUser, CrmRole, string>
 {
+    // Zestaw danych reprezentujących tabele w bazie
     public DbSet<Person> People { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Tag> Tags { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 
     public ContactsDbContext(DbContextOptions<ContactsDbContext> options) : base(options) { }
 
@@ -59,7 +62,14 @@ public class ContactsDbContext : IdentityDbContext<CrmUser, CrmRole, string>
             .IsRequired(false);
             
         builder.Entity<Tag>(entity => { entity.HasKey(t => t.Id); });
-
+        
+        // Konfiguracja RefreshTokena
+        builder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasKey(t => t.Id);
+            entity.HasIndex(t => t.Token).IsUnique();
+        });
+        
         // --- Seedowanie danych początkowych ---
         // Używamy silnego typowania, aby uniknąć błędów niekompatybilności enumów
         builder.Entity<Company>().HasData(
@@ -76,5 +86,6 @@ public class ContactsDbContext : IdentityDbContext<CrmUser, CrmRole, string>
                 Status = ContactStatus.Activate     // Używamy Enuma bezpośrednio
             }
         );
+        
     }
 }
